@@ -13,4 +13,7 @@ if (!function_exists('intl_get_error_code')) {
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
+$loader->add('FOS', __DIR__.'/../vendor/bundles');
+$loader->add('CoreSphere', __DIR__.'/../vendor/bundles');
+
 return $loader;

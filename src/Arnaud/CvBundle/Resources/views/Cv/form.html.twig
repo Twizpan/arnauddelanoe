@@ -1,0 +1,179 @@
+{% extends "ArnaudCvBundle::layout.html.twig" %}
+
+
+{% block head_style %}
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('css/form_layout.less') }}"/>
+{% endblock %}
+
+{% form_theme form _self %}
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+            {{ date_pattern|replace({
+                '{{ year }}':  form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}':   form_widget(form.day),
+            })|raw }}
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+{% block field_row %}
+{% spaceless %}
+        {{ form_label(form, label|default(null)) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+{% endspaceless %}
+{% endblock field_row %}
+
+{% block form_widget_compound %}
+{% spaceless %}
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+{% endspaceless %}
+{% endblock form_widget_compound %}
+
+
+
+
+{% block content %}
+
+    {% if form.vars.data.id > 0 %}
+    <form action="{{ path('arnaud_cv_update_job', {'id': form.vars.data.id}) }}" method="post" {{ form_enctype(form) }}>
+    {% else %}
+    <h3>Ajout</h3>
+    <form action="{{ path('arnaud_cv_add_job', {'id': form.vars.data.id}) }}" method="post" {{ form_enctype(form) }}>
+    {% endif %}
+
+
+        <ul>
+            <li>
+                {{ form_label(form.Position) }}
+                {{ form_widget(form.Position) }}
+                {{ form_errors(form.Position) }}
+            </li>
+            <li>
+                <dl>
+                    <dt>
+                        {{ form_label(form.Company.Name, 'Entreprise') }}
+                        {{ form_widget(form.Company.Name) }}
+                        {{ form_errors(form.Company.Name) }}
+                    </dt>
+                    <dd>
+                        {{ form_label(form.Company.Size) }}
+                        {{ form_widget(form.Company.Size) }}
+                        {{ form_errors(form.Company.Size) }}
+                    </dd>
+                    <dd>
+                        {{ form_label(form.Company.Activity) }}
+                        {{ form_widget(form.Company.Activity) }}
+                        {{ form_errors(form.Company.Activity) }}
+                    </dd>
+                    <dd>
+                        {{ form_label(form.Company.Location) }}
+                        {{ form_widget(form.Company.Location) }}
+                        {{ form_errors(form.Company.Location) }}
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                {{ form_label(form.Start) }}
+                {{ form_widget(form.Start) }}
+                {{ form_errors(form.Start) }}
+            </li>
+            <li>
+                {{ form_label(form.End) }}
+                {{ form_widget(form.End) }}
+                {{ form_errors(form.End) }}
+            </li>
+            <li>
+                <dl class="tasks" data-prototype="{{ form_widget(form.tasks.vars.prototype)|e }}">
+                    <dt>
+                        {{ form_label(form.tasks) }}
+                    </dt>
+                    {# iterate over each existing task and render its only field: description #}
+                    {% for task in form.tasks %}
+                    <dd>
+                        {{ form_label(task.description) }}
+                        {{ form_widget(task.description) }}
+                        {{ form_errors(task.description) }}
+                    </dd>
+                    {% endfor %}
+                </dl>
+            </li>
+        </ul>
+
+        {{ form_rest(form) }}
+
+        <input type="submit"/>
+    
+    </form>
+
+
+<script type="text/javascript">
+    // Get the div that holds the collection of tasks
+    var collectionHolder = $('dl.tasks');
+
+    // setup an "add a task" link
+    var $addTaskLink = $('<a href="#" class="add_task_link">Ajouter</a>');
+    var $newLinkLi = $('<dd></dd>').append($addTaskLink);
+
+    jQuery(document).ready(function() {
+
+        // add a delete link to all of the existing tag form li elements
+        collectionHolder.find('dd').each(function() {
+            addTaskFormDeleteLink($(this));
+        });
+
+        // add the "add a tag" anchor and li to the tags ul
+        collectionHolder.append($newLinkLi);
+
+        $addTaskLink.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // add a new tag form (see next code block)
+            addTaskForm(collectionHolder, $newLinkLi);
+        });
+    });
+
+    function addTaskForm(collectionHolder, $newLinkLi) 
+    {
+        // Get the data-prototype explained earlier
+        var prototype = collectionHolder.attr('data-prototype');
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on the current collection's length.
+        var newForm = prototype.replace(/__name__/g, collectionHolder.find('dd').length-1);
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        var $newFormLi = $('<dd></dd>').append(newForm);
+        $newLinkLi.before($newFormLi);
+
+        // add a delete link to the new form
+        addTaskFormDeleteLink($newFormLi);
+    }
+
+    function addTaskFormDeleteLink($taskFormLi) 
+    {
+        var $removeFormA = $('<a href="#">Supprimer</a>');
+        $taskFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // remove the li for the tag form
+            $taskFormLi.remove();
+        });
+    }
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+<?php
+
+namespace Arnaud\CvBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Arnaud\CvBundle\Entity\Task
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Arnaud\CvBundle\Entity\TaskRepository")
+ */
+class Task
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="Arnaud\CvBundle\Entity\Job", inversedBy="tasks" )
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $job;
+
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="text", nullable=false)
+     * @Assert\NotBlank
+     */
+    private $description;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Task
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set Job
+     *
+     * @param Arnaud\CvBundle\Entity\Job $job
+     * @return Task
+     */
+    public function setJob(\Arnaud\CvBundle\Entity\Job $job = null)
+    {
+        $this->Job = $job;
+    
+        return $this;
+    }
+
+    /**
+     * Get Job
+     *
+     * @return Arnaud\CvBundle\Entity\Job 
+     */
+    public function getJob()
+    {
+        return $this->Job;
+    }
+}

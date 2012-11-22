@@ -1,0 +1,20 @@
+{% extends "ArnaudMainBundle::layout.html.twig" %}
+
+{% block head_style %}
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('css/main_layout.less') }}">
+{% endblock %}
+
+{% block content %}
+<ul>
+    <li>
+        <h3>
+            <a href="{{ path('arnaud_main_index') }}">Accueil</a>
+        </h3>
+    </li>
+    <li>
+        <h3>
+            <a href="{{ path('arnaud_cv_index') }}">Curriculum Vitae</a>
+        </h3>
+    </li>
+</ul>
+{% endblock %}

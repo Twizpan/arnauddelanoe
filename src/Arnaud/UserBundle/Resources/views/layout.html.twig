@@ -1,0 +1,17 @@
+{% extends "::layout.html.twig" %}
+
+{% block head_title %}
+    {{ parent() }} Identification
+{% endblock %}
+
+{% block head_style %}
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('css/security_layout.less') }}"/>
+{% endblock %}
+
+{% block content_title %}
+    Identification
+{% endblock %}
+
+{% block content %}
+    {% block fos_user_content %}{% endblock %}
+{% endblock %}

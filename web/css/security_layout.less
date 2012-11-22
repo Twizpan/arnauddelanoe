@@ -1,0 +1,54 @@
+@import 'app_layout.less';
+
+body>section>form
+{
+    &>dl
+    {
+        width: 600px;
+        background-color: @color5;
+        margin: 0;
+        &>dt
+        {
+            padding: 10px;
+            &>h3
+            {
+                margin: 0;
+            }
+        }
+        &>dd
+        {
+            background-color: @color4;
+            margin-left: 10px;
+            padding: 5px 0 5px 10px;
+            &:nth-of-type(1)
+            {
+                padding: 10px 0 5px 10px;
+            }
+            &:last-child
+            {
+                padding: 5px 0 5px 10px;
+            }
+            &>label, &>input
+            {
+                font-size: 20px;
+            }
+            &>label
+            {
+                display: inline-block;
+                min-width: 160px;
+            }
+            &.error
+            {
+                font-size: 18px;
+                text-align: center;
+                color:@color1;                
+            }
+        }
+    }
+    &>input[type=submit]
+    {
+        .button-reset;
+        .button-under(2);
+    }
+
+}

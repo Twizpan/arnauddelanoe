@@ -1,0 +1,32 @@
+@import 'app_layout.less';
+
+body>section
+{
+    &>ul
+    {
+        &>li
+        {
+            width: 600px;
+            background-color: @color5;
+            margin: 0 0 10px 0;
+
+            &:last-child
+            {
+                margin: 0;
+            }
+            &>h3
+            {
+                margin: 0;
+                height: 60px;
+                line-height: 60px;
+                a
+                {
+                    padding-left: 10px;
+                    color: @background;
+                    display: block;
+                    line-height: 60px;
+                }
+            }
+        }
+    }
+}

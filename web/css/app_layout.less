@@ -1,0 +1,165 @@
+@column-width: 60px;
+@gutter-width: 20px;
+
+/*colors*/
+@background: #00010D;
+@link: #66666A;
+@color1: #686E75;
+@color2: #9BAAC1;
+@color3: #82787B;
+@color4: #E4F1DB;
+@color5: #AAC19B;
+
+a
+{
+    text-decoration: none;
+}
+
+h1
+{
+    font-size: 50px;
+}
+h2
+{
+    font-size: 64px;
+}
+h3
+{
+    font-size: 35px;
+}
+h4
+{
+    font-size: 30px;
+}
+li
+{
+    list-style-type: none;
+    list-style-image: none;
+}
+
+.button(@width)
+{
+    display: inline-block;
+    background-color: @color5;
+    color: @color1;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0px 16px 0 0;
+    min-width: (@width*@column-width)+((@width - 1)*@gutter-width);
+    text-align: center;
+}
+
+.button-under(@width)
+{
+    .button(@width);
+    border-top: dashed 5px;    
+    margin-top: 1px;
+}
+
+.button-reset()
+{
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+
+
+body
+{
+    background-color: @background;
+    width: 960px;
+    margin: 0 auto;
+
+
+    &>header
+    {
+        background-color: @color3;
+        width: 220px;
+        height: 220px;
+        float: left;
+        margin: 105px 10px 10px 10px;
+        position: relative;
+        h1
+        {
+            text-align: right;
+        }
+        a
+        {
+            color: @background;
+            &:last-child
+            {
+                font-size: 20px;
+                margin-left: 5px;
+                position: absolute;
+                bottom: 5px;
+                line-height: 21px;
+                display: block;
+                height: 21px;
+            }
+            &.login
+            {
+                background: url('../img/padlock.png') no-repeat left center;
+                padding-left: 25px;
+            }
+            &.logout
+            {
+                background: url('../img/padlock_open.png') no-repeat left center;
+                padding-left: 45px;                
+            }
+        }
+    }
+
+    &>nav
+    {
+        width: 700px;
+        height: 24px;
+        float: right;
+        margin: 1px 10px 0 10px;
+        ul{
+            display: block;
+            margin: 1px 0 0 0;
+            padding: 0;
+            height: 24px;
+            li
+            {
+                padding: 0 20px 0 2px;
+                display: inline-block;
+                border-left: 10px solid @color2;
+                line-height: 24px;
+                a
+                {
+                    font-size: 20px;
+                    color: @color2;
+                }
+            }            
+        }
+    }
+
+    &>section
+    {
+        float: right;
+        margin: 0 10px 10px 10px;
+        &>h2
+        {
+            background-color: @color2;
+            width: 700px;
+            height: 60px;
+            margin: 0 0 20px 0;
+            text-align: center;
+            line-height: 75px;
+        }
+
+        &>ul, &>form, &>div
+        {
+            background-color: @color1;
+            width: 460px;
+            padding: 10px 0 10px 10px;
+        }
+    }
+
+}

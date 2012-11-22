@@ -1,0 +1,73 @@
+{% extends "ArnaudCvBundle::layout.html.twig" %}
+
+{% block head_style %}
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('css/cv_layout.less') }}"/>
+{% endblock %}
+
+
+{% block content %}
+    <ul>
+        {% for job in jobs %}
+        <li> 
+            <article>
+                <header>
+                    <h3>{{job.position}}</h3>
+                    <dl>
+                        <dt><h3>{{job.company.name}}</h3></dt>
+                        {% if job.company %}
+                        <dd>
+                            <ul>
+                                {% if job.company.activity %}
+                                <li>
+                                    {{job.company.activity}}
+                                </li>
+                                {% endif %}
+                                {% if job.company.size %}
+                                <li>
+                                    {{job.company.size}} employés
+                                </li>
+                                {% endif %}
+                                {% if job.company.location %}
+                                <li>
+                                    {{job.company.location}}
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </dd>
+                        {% endif %}
+                    </dl>
+                    {% if job.start %}
+                    {% if job.end %}
+                    <h4>
+                        <span>{{ job.start is empty ? "" : job.start|date("m/Y") }}</span>
+                        <span>{{ job.end is empty ? "" : job.end|date("m/Y") }}</span>
+                    </h4>
+                    {% endif %}
+                    {% endif %}
+                            
+                </header>
+                {% if job.tasks|length > 0 %}
+                <ul> 
+                    {% for task in job.tasks %}
+                    <li> 
+                        {{task.description}}
+                    </li>
+                    {%endfor%}
+                </ul>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <aside>
+                    <a href="{{ path('arnaud_cv_update_job' , {'id': job.id}) }}">Modifier</a>
+                    <a href="{{ path('arnaud_cv_delete_job' , {'id': job.id}) }}">Supprimer</a>
+                </aside>
+                {% endif %}
+            </article>
+        </li>
+        {% endfor %}
+        {% if is_granted('ROLE_ADMIN') %}
+        <li>
+            <a href="{{ path('arnaud_cv_add_job') }}">Ajouter</a>
+        </li>
+        {% endif %}
+    </ul>
+{% endblock %}
