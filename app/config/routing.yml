@@ -18,9 +18,6 @@ arnaud_cv_delete_job:
     pattern: /cv/delete/job/{id}
     defaults: { _controller: ArnaudCvBundle:Default:deleteJob }
 
-arnaud_user_add_default:
-    pattern: /user/add_default
-    defaults: { _controller: ArnaudUserBundle:Default:addDefault }
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
