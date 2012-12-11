@@ -148,7 +148,6 @@ class Job
      */
     public function isEndValid()
     {
-        var_dump($this->start);
         if(($this->end > $this->start) || is_null($this->start))
         {
             return true;

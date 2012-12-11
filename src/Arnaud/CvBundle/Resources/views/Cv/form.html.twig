@@ -2,7 +2,7 @@
 
 
 {% block head_style %}
-    <link rel="stylesheet/less" type="text/css" href="{{ asset('css/form_layout.less') }}"/>
+    <link rel="stylesheet/less" type="text/css" href="{{ asset('css/security_layout.less') }}"/>
 {% endblock %}
 
 {% form_theme form _self %}
@@ -39,48 +39,103 @@
 {% endspaceless %}
 {% endblock form_widget_compound %}
 
-
+{% block field_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul class="error">
+        {% for error in errors %}
+            <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock field_errors %}
 
 
 {% block content %}
 
-    {% if form.vars.data.id > 0 %}
-    <form action="{{ path('arnaud_cv_update_job', {'id': form.vars.data.id}) }}" method="post" {{ form_enctype(form) }}>
-    {% else %}
-    <h3>Ajout</h3>
-    <form action="{{ path('arnaud_cv_add_job', {'id': form.vars.data.id}) }}" method="post" {{ form_enctype(form) }}>
-    {% endif %}
+{% if form.vars.data.id > 0 %}
+<form action="{{ path('arnaud_cv_update_job', {'id': form.vars.data.id}) }}" method="post" {{ form_enctype(form) }}>
+{% else %}
+<form action="{{ path('arnaud_cv_add_job', {'id': form.vars.data.id}) }}" method="post" {{ form_enctype(form) }}>
+{% endif %}
 
+    <h3>
+        {% if form.vars.data.id > 0 %}
+        Modification
+        {% else %}
+        Ajout
+        {% endif %}
+    </h3>
+    <ul>
+        <li>
+            {{ form_label(form.Position) }}
+            {{ form_widget(form.Position) }}
+            {{ form_errors(form.Position) }}            
+        </li>
+        <li>
+            {{ form_label(form.Start) }}
+            {{ form_widget(form.Start) }}
+            {{ form_errors(form.Start) }}
+        </li>
+        <li>
+            {{ form_label(form.End) }}
+            {{ form_widget(form.End) }}
+            {{ form_errors(form.End) }}
+        </li>
+        <li>
+            <dl>
+                <dt>
+                    {{ form_label(form.Company.Name, 'Entreprise') }}
+                    {{ form_widget(form.Company.Name) }}
+                    {{ form_errors(form.Company.Name) }}
+                </dt>
+                <dd>
+                    {{ form_label(form.Company.Size) }}
+                    {{ form_widget(form.Company.Size) }}
+                    {{ form_errors(form.Company.Size) }}
+                </dd>
+                <dd>
+                    {{ form_label(form.Company.Activity) }}
+                    {{ form_widget(form.Company.Activity) }}
+                    {{ form_errors(form.Company.Activity) }}
+                </dd>
+                <dd>
+                    {{ form_label(form.Company.Location) }}
+                    {{ form_widget(form.Company.Location) }}
+                    {{ form_errors(form.Company.Location) }}
+                </dd>
+            </dl>        
+        </li>
+        
+        <li>
+            <dl class="tasks" data-prototype="{{ form_widget(form.tasks.vars.prototype)|e }}">
+                <dt>
+                    {{ form_label(form.tasks) }}
+                </dt>
+                {# iterate over each existing task and render its only field: description #}
+                {% for task in form.tasks %}
+                <dd>
+                    {{ form_label(task.description) }}
+                    {{ form_widget(task.description) }}
+                    {{ form_errors(task.description) }}
+                </dd>
+                {% endfor %}
+            </dl>
+        </li>
+        <li>
+            {{ form_rest(form) }}
+        </li>
+        <li>
+            <input type="submit" value="Enregistrer"/>
+        </li>
+    </ul>
+    
 
-        <ul>
+        <!--ul>
             <li>
-                {{ form_label(form.Position) }}
-                {{ form_widget(form.Position) }}
-                {{ form_errors(form.Position) }}
             </li>
             <li>
-                <dl>
-                    <dt>
-                        {{ form_label(form.Company.Name, 'Entreprise') }}
-                        {{ form_widget(form.Company.Name) }}
-                        {{ form_errors(form.Company.Name) }}
-                    </dt>
-                    <dd>
-                        {{ form_label(form.Company.Size) }}
-                        {{ form_widget(form.Company.Size) }}
-                        {{ form_errors(form.Company.Size) }}
-                    </dd>
-                    <dd>
-                        {{ form_label(form.Company.Activity) }}
-                        {{ form_widget(form.Company.Activity) }}
-                        {{ form_errors(form.Company.Activity) }}
-                    </dd>
-                    <dd>
-                        {{ form_label(form.Company.Location) }}
-                        {{ form_widget(form.Company.Location) }}
-                        {{ form_errors(form.Company.Location) }}
-                    </dd>
-                </dl>
             </li>
             <li>
                 {{ form_label(form.Start) }}
@@ -107,11 +162,9 @@
                     {% endfor %}
                 </dl>
             </li>
-        </ul>
+        </ul-->
 
-        {{ form_rest(form) }}
 
-        <input type="submit"/>
     
     </form>
 

@@ -1,0 +1,178 @@
+/*colors*/
+/*colors*/
+a {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+h3 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-weight: normal;
+  font-size: 24px;
+  color: #e5e5e5;
+}
+li {
+  list-style-type: none;
+  list-style-image: none;
+}
+body {
+  background-color: #4c97aa;
+  color: #0e0e0e;
+  font-family: verdana, helvetica, sans-serif;
+}
+body > header {
+  position: relative;
+  z-index: 100;
+  -moz-box-shadow: 3px 3px 15px 0 #000000;
+  -webkit-box-shadow: 3px 3px 15px 0 #000000;
+  box-shadow: 3px 3px 15px 0 #000000;
+  background-color: #ff9821;
+  text-align: center;
+  height: 240px;
+}
+body > header > h1 {
+  text-align: left;
+  width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+body > header > h1:before {
+  content: "";
+  display: block;
+  width: 190px;
+  height: 240px;
+  background-image: url('../img/arnaud_photo_mos.png');
+  float: right;
+  margin-right: 90px;
+}
+body > header > h1 > a {
+  margin: 80px 0 0 10px;
+  width: 338px;
+  display: block;
+  padding-top: 86px;
+  height: 0;
+  overflow: hidden;
+  background: url('../img/arnaud-logo.png') no-repeat;
+}
+body > header > a {
+  height: 21px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: "Courier New", Courrier, monospace;
+  color: #e5e5e5;
+}
+body > header > a.login {
+  width: 20px;
+}
+body > header > a.login:hover {
+  background: url('../img/padlock.png') no-repeat;
+}
+body > header > a.logout {
+  padding: 25px 0 0 0;
+  background: url('../img/padlock_open.png') no-repeat;
+}
+body > nav {
+  background: #343434;
+  -moz-box-shadow: inset 5px 5px 10px 0 #000000;
+  -webkit-box-shadow: inset 5px 5px 10px 0 #000000;
+  box-shadow: inset 5px 5px 10px 0 #000000;
+}
+body > nav > ul {
+  text-shadow: 2px 2px 3px #284f5a, -1px -1px 3px #f1f1f1;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  width: 960px;
+  text-align: center;
+}
+body > nav > ul > li {
+  display: inline-block;
+  margin-right: 90px;
+  text-align: center;
+}
+body > nav > ul > li:last-child {
+  margin-right: 0;
+}
+body > nav > ul > li > a {
+  font-family: "Courier New", Courrier, monospace;
+  margin-top: 0;
+  padding: 0 15px;
+  color: #e5e5e5;
+  font-size: 32px;
+}
+body > nav > ul > li > a:hover {
+  background-color: #3e5c63;
+}
+body > nav > ul > li > a.selected {
+  background-color: #4c97aa;
+  color: #f1f1f1;
+}
+body > section {
+  width: 940px;
+  margin: 0 auto;
+  padding: 0 10px 20px;
+}
+body > section > h2 {
+  text-shadow: 2px 2px 5px #284f5a, -1px -1px 5px #f1f1f1;
+  margin: 30px 0;
+  color: #f1f1f1;
+  font-weight: normal;
+  font-size: 42px;
+  font-family: "Courier New", Courrier, monospace;
+}
+body > section a {
+  color: #0e0e0e;
+  text-decoration: underline;
+}
+body > section a:hover {
+  color: #ff9821;
+  text-shadow: 0 0 15px #e6b073;
+}
+body > section > ul,
+body > section > form,
+body > section > p,
+body > section > div {
+  margin: 0;
+  padding: 0;
+}
+body > section > article {
+  margin: 0 0 0 80px;
+  padding: 0;
+  width: 860px;
+  -moz-box-shadow: 10px 10px 10px 0 #45899a;
+  -webkit-box-shadow: 10px 10px 10px 0 #45899a;
+  box-shadow: 10px 10px 10px 0 #45899a;
+  border-bottom: 2px solid #ffa033;
+}
+body > section > article > h3 {
+  border-radius: 10px 0 10px 0;
+  position: relative;
+  z-index: 100;
+  padding: 20px;
+  margin: 0;
+  text-shadow: 1px 1px 2px #ffcf99, 0px 0px 2px #734817;
+  -moz-box-shadow: 0 5px 3px 0 #7f4c10;
+  -webkit-box-shadow: 0 5px 3px 0 #7f4c10;
+  box-shadow: 0 5px 3px 0 #7f4c10;
+  font-size: 22px;
+  color: #343434;
+  background-color: #ffa033;
+}
+body > section > article > div {
+  -moz-box-shadow: inset 0px 2px 5px 8px #418191;
+  -webkit-box-shadow: inset 0px 2px 5px 8px #418191;
+  box-shadow: inset 0px 2px 5px 8px #418191;
+  background-color: #488fa1;
+  text-shadow: 3px 3px 2px #3f7c8d;
+  color: #0e0e0e;
+  padding: 0 20px;
+  font-size: 18px;
+}
+body > section > article > div > p {
+  padding: 20px 0 0;
+  margin: 0;
+}
+body > section > article > div > p:last-child {
+  padding: 20px 0;
+}

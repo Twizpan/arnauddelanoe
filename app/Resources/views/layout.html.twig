@@ -21,12 +21,12 @@
     <body>
 
         <header>
-            <a href="{{ path('arnaud_main_index') }}">
-                <h1 itemscope itemtype="http://data-vocabulary.org/Person">
+            <h1 itemscope itemtype="http://data-vocabulary.org/Person">
+                <a href="{{ path('arnaud_main_index') }}">
                     <span itemprop="givenName">Arnaud</span>
-                    <span itemprop="famillyName">Delanoë</span>
-                </h1>          
-            </a>
+                    <span itemprop="famillyName">DELANOË</span>
+                </a>
+            </h1>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <a class="logout" href="{{ path('fos_user_security_logout') }}" title="Se déconnecter">{{app.user.username}}</a>
             {% else %}
@@ -35,17 +35,18 @@
         </header>
 
         <nav>
+            
             <ul>
                 <li>
-                    <a href="{{ path('arnaud_main_index') }}">Accueil</a>
+                    <a href="{{ path('arnaud_main_index') }}" title="Accueil" {% block menu_index_class %}{% endblock %}>/</a>
                 </li>
                 <li>
-                    <a href="{{ path('arnaud_cv_index') }}">CV</a>
+                    <a href="{{ path('arnaud_cv_index') }}" title="Curriculum vitæ" {% block menu_cv_class %}{% endblock %}>/cv</a>
                 </li>
             </ul>
         </nav>
 
-        <section>        
+        <section>
             <h2>{% block content_title %}{% endblock %}</h2>
             {% block content %}{% endblock %}
         </section>

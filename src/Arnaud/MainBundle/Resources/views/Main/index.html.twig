@@ -5,16 +5,13 @@
 {% endblock %}
 
 {% block content %}
-<ul>
-    <li>
-        <h3>
-            <a href="{{ path('arnaud_main_index') }}">Accueil</a>
-        </h3>
-    </li>
-    <li>
-        <h3>
-            <a href="{{ path('arnaud_cv_index') }}">Curriculum Vitae</a>
-        </h3>
-    </li>
-</ul>
+<article>
+    <h3>Bienvenue sur mon site personnel</h3> 
+    <div>
+        <p>Ceci est une jeune version mais vous pouvez déjà consulter mon <a href="{{ path('arnaud_cv_index') }}">curriculum vitae</a>.</p>
+        <p>Du nouveau contenu - concernant mes centres d'intérêts et moi-même -  sera ajouté régulièrement. Promis !</p> 
+        <p>Merci de votre visite.</p>
+        <p><em>Arnaud</em></p>
+    </div>
+</article>
 {% endblock %}

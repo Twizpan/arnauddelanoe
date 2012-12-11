@@ -2,53 +2,102 @@
 
 body>section>form
 {
-    &>dl
+    margin: 0 0 0 80px;
+    .box-shadow(10px, 10px, 10px, 0, #45899a);
+    border-bottom: 2px solid @strip;
+    .required
     {
-        width: 600px;
-        background-color: @color5;
-        margin: 0;
-        &>dt
+        &:before
         {
-            padding: 10px;
-            &>h3
-            {
-                margin: 0;
-            }
+            content: '*';
         }
-        &>dd
+    }
+    label, input, select
+    {
+        font-size: 18px;
+    }
+    input
+    {
+        background-color: transparent;
+        border: 2px solid @light-grey;
+        padding: 5px;
+        .box-shadow(inset, 0, 0, 10px, 0, @light-grey);
+        &:focus
         {
-            background-color: @color4;
-            margin-left: 10px;
-            padding: 5px 0 5px 10px;
-            &:nth-of-type(1)
-            {
-                padding: 10px 0 5px 10px;
-            }
+            .box-shadow(inset, 0, 0, 20px, 0, @light-grey);
+            outline: none;
+        }
+    }
+    a
+    {
+        .button-lcd;
+        color: @black;
+        //padding: 3px;
+        border: 1px solid @strip;
+        font-size: 16px;
+    }
+    &>h3
+    {
+        position: relative;
+        z-index: 100;
+        padding: 20px;
+        margin: 0;
+
+        border-radius: 10px 0 10px 0;
+        text-shadow: 1px 1px 2px #ffcf99, 0px 0px 2px #734817;
+        .box-shadow(0, 5px, 3px, 0, #7f4c10);
+        font-size: 22px;
+        color: @menu-bg;
+        background-color: @strip;
+    }
+    .error
+    {
+        font-size: 20px;
+        font-family: "Courier New", Courrier, monospace;
+        color: @strip;
+        text-shadow: none;
+    }
+
+    ul.error
+    {
+        padding: 0;
+        margin: 0 0 0 10px;
+        font-size: 14px;
+        font-family: "Courier New", Courrier, monospace;
+    }
+    &>ul
+    {
+        padding: 5px 0 0;
+        margin: 0;
+        font-familly: verdana, helvetica, sans-serif;
+        .glass(bottom);
+        &>li
+        {
+            margin: 20px 0 20px 20px;
+            padding: 0;
             &:last-child
             {
-                padding: 5px 0 5px 10px;
-            }
-            &>label, &>input
-            {
-                font-size: 20px;
+                margin: 0;
             }
             &>label
             {
                 display: inline-block;
-                min-width: 160px;
             }
-            &.error
+            &>input[type=submit]
             {
-                font-size: 18px;
-                text-align: center;
-                color:@color1;                
+                .button-lcd;
+                border-bottom: none;
+                margin: 0;
+            }
+            &>dl>dd
+            {
+                margin: 10px 0 0 40px;
+                label, input, select
+                {
+                    font-size: 16px;
+                }
             }
         }
-    }
-    &>input[type=submit]
-    {
-        .button-reset;
-        .button-under(2);
     }
 
 }

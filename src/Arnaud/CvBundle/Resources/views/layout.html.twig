@@ -1,9 +1,11 @@
 {% extends "::layout.html.twig" %}
 
 {% block head_title %}
-    {{ parent() }} CV
+    Cv|{{ parent() }}
 {% endblock %}
 
+{% block menu_cv_class %}class="selected"{% endblock %}
+
 {% block content_title %}
-    Curriculum Vitae
+    Curriculum vitae
 {% endblock %}

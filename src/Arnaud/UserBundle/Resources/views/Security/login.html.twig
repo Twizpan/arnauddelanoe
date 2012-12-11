@@ -4,27 +4,27 @@
 
 <form action="{{ path("fos_user_security_check") }}" method="post">
 
-    <dl>
-        <dt>
-            <h3>Login</h3>
-        </dt>
+    <h3>Connexion</h3>
+    <ul>
         {% if error %}
-            <dd class="error">{{ error|trans({}, 'FOSUserBundle') }}</dd>
+            <li class="error">{{ error|trans({}, 'FOSUserBundle') }}</li>
         {% endif %}
-        <dd>
+        <li>
             <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
             <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-        </dd>
-        <dd>
+        </li>
+        <li>
             <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
             <input type="password" id="password" name="_password" required="required" />
-        </dd>
-        <dd>
+        </li>
+        <li>
             <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
             <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
-        </dd>
-    </dl>
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+        </li>
+        <li>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+        </li>
+    </ul>
 </form>
 {% endblock fos_user_content %}
