@@ -142,7 +142,6 @@ h4 {
   padding: 0;
 }
 body > section > ul {
-  width: 862px;
   margin-left: 80px;
 }
 body > section > ul:after {
@@ -217,7 +216,7 @@ body > section > ul > li > article {
   background-color: #488fa1;
   text-shadow: 3px 3px 2px #3f7c8d;
   color: #0e0e0e;
-  width: 800px;
+  width: 810px;
   margin: 0 0 0 60px;
   border-right: 2px solid #ffa033;
 }
